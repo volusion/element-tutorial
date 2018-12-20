@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 
 export const ControlsFactory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles
 ) => {
     const classes = StyleSheet.create(styles());
     const Button = Components.Button.factory(
-        { React, VolusionPropTypes },
+        { React, ElementPropTypes },
         { StyleSheet, css },
         globalStyles
     );

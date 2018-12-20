@@ -22,7 +22,7 @@ let's start by modifying our `configSpec` to look like this:
 
 ```js
 const configSpec = {
-    productId: VolusionPropTypes.string.isRequired,
+    productId: ElementPropTypes.string.isRequired,
 };
 ```
 
@@ -209,7 +209,7 @@ define the shape of the object you are returning from the `getDataProps` functio
 
 ```js
 const configSpec = {
-    productId: VolusionPropTypes.string.isRequired,
+    productId: ElementPropTypes.string.isRequired,
     data: PropTypes.shape({
       product: PropTypes.shape({
         name: PropTypes.string,
@@ -219,7 +219,7 @@ const configSpec = {
 };
 ```
 
-Remember that this is entirely optional. We are mixing `VolusionPropTypes` and `PropTypes` inside
+Remember that this is entirely optional. We are mixing `ElementPropTypes` and `PropTypes` inside
 of the `configSpec`. Be careful, though, as only `data` and `queryParams` objects are allowed to
 be `PropTypes` inside the `configSpec` object. The `data` and `queryParams` properties  won't be presented
 to the user as configurable options.

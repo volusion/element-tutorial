@@ -90,15 +90,15 @@ forget to add this prop into the `configSpec` object:
 
 ```js
 const configSpec = {
-    productId: VolusionPropTypes.string.isRequired,
-    productLayout: VolusionPropTypes.oneOf(['left', 'right']).isRequired,
-    color: VolusionPropTypes.shape({
-        background: VolusionPropTypes.color.isRequired
+    productId: ElementPropTypes.string.isRequired,
+    productLayout: ElementPropTypes.oneOf(['left', 'right']).isRequired,
+    color: ElementPropTypes.shape({
+        background: ElementPropTypes.color.isRequired
     }).isRequired,
 };
 ```
 
-We are using `VolusionPropType.oneOf` that lets us specify an array of options. In the 
+We are using `ElementPropTypes.oneOf` that lets us specify an array of options. In the 
 Site Designer, users will see a dropdown list with the provided options.
 
 We also added a color property as a shape to control the background color of the block.
@@ -119,7 +119,7 @@ Let's define the classes variable now:
 import styles from './styles';
  
 const factory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles,
@@ -199,8 +199,8 @@ import { ImageSliderFactory } from './components/ImageSlider';
 // Code omitted
 
 const configSpec = {
-    productId: VolusionPropTypes.string.isRequired,
-    productLayout: VolusionPropTypes.oneOf(['left', 'right']).isRequired,
+    productId: ElementPropTypes.string.isRequired,
+    productLayout: ElementPropTypes.oneOf(['left', 'right']).isRequired,
 };
 
 const ImageSlider = ImageSliderFactory(
@@ -252,7 +252,7 @@ import { ImageSliderFactory } from './components/ImageSlider';
 
 
 const factory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles,
@@ -267,7 +267,7 @@ const factory = (
         globalStyles
     );
     const Controls = ControlsFactory(
-        { React, VolusionPropTypes, Components },
+        { React, ElementPropTypes, Components },
         utils,
         { StyleSheet, css },
         globalStyles
@@ -312,14 +312,14 @@ in the **src/Block/components/Controls/index.js**:
 
 ```js
 export const ControlsFactory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles
 ) => {
     const classes = StyleSheet.create(styles());
     const Button = Components.Button.factory(
-        { React, VolusionPropTypes },
+        { React, ElementPropTypes },
         { StyleSheet, css },
         globalStyles
     );

@@ -5,7 +5,7 @@ seen here:
 
 ```js
 const factory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles,
