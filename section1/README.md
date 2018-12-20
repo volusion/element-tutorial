@@ -130,7 +130,7 @@ The factory function looks like a scary function, but it's actually very simple:
 
 ```js
 const factory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles,
@@ -144,7 +144,7 @@ Let look at each parameter one by one:
 
 Right now we are using React, but we can inject any framework in the future.
 
-**VolusionPropTypes: A handy object to specify block configuration**
+**ElementPropTypes: A handy object to specify block configuration**
 
 An object similar to React's Proptypes that let you easily specify what
 configurations your block receives. After you determine the properties you want to 
@@ -176,7 +176,7 @@ Used to create the class names of the styles you are applying to your DOM elemen
 
 Examples: Font families, heading size, background color, font color.
 
-**blockConfig: The fully populated config object as specified with VolusionPropTypes**
+**blockConfig: The fully populated config object as specified with ElementPropTypes**
 
 If a user does not configure your block, then this will be your `defaultConfig`.
 
@@ -191,10 +191,10 @@ Let's see how this object looks in our block starter:
 
 ```js
 const configSpec = {
-  color: VolusionPropTypes.shape({
-    background: VolusionPropTypes.color
+  color: ElementPropTypes.shape({
+    background: ElementPropTypes.color
   }),
-  text: VolusionPropTypes.string
+  text: ElementPropTypes.string
 };
 ```
 
@@ -205,8 +205,8 @@ pick a color for that particular configuration object.
 
 When a user selects your block from the Site Designer (SD), we will let them configure it according to the
 configuration schema you specified for your block. In the block starter example, the SD will
-show a form with a section (`VolusionPropTypes.shape`) called `Color` with a color 
-picker (`VolusionPropTypes.color`). As it is a shape, you can specify more configuration options 
+show a form with a section (`ElementPropTypes.shape`) called `Color` with a color 
+picker (`ElementPropTypes.color`). As it is a shape, you can specify more configuration options 
 wrapped in the `color` category or shape.
 
 Additionally, the user will see a text input with the name `Text` where they can type in the

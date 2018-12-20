@@ -14,7 +14,7 @@ const defaultConfig = {
 };
 
 const factory = (
-    { React, VolusionPropTypes, Components },
+    { React, ElementPropTypes, Components },
     utils,
     { StyleSheet, css },
     globalStyles,
@@ -35,7 +35,7 @@ const factory = (
     );
 
     const Controls = ControlsFactory(
-        { React, VolusionPropTypes, Components },
+        { React, ElementPropTypes, Components },
         utils,
         { StyleSheet, css },
         globalStyles
@@ -51,10 +51,10 @@ const factory = (
 
 
     const configSpec = {
-        productId: VolusionPropTypes.string.isRequired,
-        productLayout: VolusionPropTypes.oneOf(['left', 'right']).isRequired,
-        color: VolusionPropTypes.shape({
-            background: VolusionPropTypes.color.isRequired
+        productId: ElementPropTypes.string.isRequired,
+        productLayout: ElementPropTypes.oneOf(['left', 'right']).isRequired,
+        color: ElementPropTypes.shape({
+            background: ElementPropTypes.color.isRequired
         }).isRequired,
     };
 
