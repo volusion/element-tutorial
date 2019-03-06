@@ -103,6 +103,10 @@ Creates a new cart.
 
 Gets the content of a cart given the provided `cartId`.
 
+### `getForShopper(cartId: string, shopperId?: string, shopperToken?: string): CartResponse`
+
+If no `shopperId` or `shopperToken`, get a new cart without personal data. Otherwise, get latest cart for `shopperId`.
+
 ### `update(cartid: string, newQuantity: number, variantId: string): CartResponse`
 
 Updates a cart (`cartId`) element (`variantId`) with a `newQuantity`.
