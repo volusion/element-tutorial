@@ -115,6 +115,10 @@ Updates a cart (`cartId`) element (`variantId`) with a `newQuantity`.
 
 Adds a `variantId` of the given `productId` to the `cartId` with the specified `quantity`.
 
+### setShopperId(cartId: string, shopperId: string): CartResponse
+
+Gets cart with ID of `cartId` and adds the `shopperId`.
+
 ### `getTotalItems(cartId: string): CartTotalItemsResponse`
 
 Gets the total count of items in a cart with an ID of `cartId`.
@@ -135,6 +139,7 @@ export interface CartResponse {
     id: string;
     items: CartItemResponse[];
     messages: string[];
+    shopperId?: string[];
     taxAmount: number;
     total: number;
     totalItems: number;
