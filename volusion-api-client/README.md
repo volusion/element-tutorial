@@ -115,9 +115,9 @@ Updates a cart (`cartId`) element (`variantId`) with a `newQuantity`.
 
 Adds a `variantId` of the given `productId` to the `cartId` with the specified `quantity`.
 
-### setShopperId(cartId: string, shopperId: string): CartResponse
+### `setShopperId(cartId: string, shopperId: string): void`
 
-Gets cart with ID of `cartId` and adds the `shopperId`.
+Sets `shopperId` on cart with ID of `cartId`.
 
 ### `getTotalItems(cartId: string): CartTotalItemsResponse`
 
