@@ -8,15 +8,15 @@ with Volusion's API.
 
 Exposes the following functions related to products:
 
-### `getById(id: string): ProductResponse`
+### `getById(id: string): Promise<ProductResponse>`
 
 Gets a product given an ID.
 
-### `getBySlug(slug: string): ProductResponse`
+### `getBySlug(slug: string): Promise<ProductResponse>`
 
 Gets a product given an SEO slug.
 
-### `search(params: Object): PagedProductResponse`
+### `search(params: Object): Promise<PagedProductResponse>`
 
 Searches for products matching some criteria as provided in the `params` object 
 that has the following shape:
@@ -95,31 +95,39 @@ export interface ProductVariantOptionsResponse {
 
 Exposes the following functions to interact with carts:
 
-### `create(): CartResponse`
+### `create(): Promise<CartResponse>`
 
 Creates a new cart.
 
-### `get(cartId: string): CartResponse`
+### `get(cartId: string): Promise<CartResponse>`
 
 Gets the content of a cart given the provided `cartId`.
 
-### `update(cartid: string, newQuantity: number, variantId: string): CartResponse`
+### `getForShopper(cartId: string, shopperId?: string, shopperToken?: string): Promise<CartResponse>`
+
+If no `shopperId` or `shopperToken`, get a new cart without personal data. Otherwise, get latest cart for `shopperId`.
+
+### `update(cartid: string, newQuantity: number, variantId: string): Promise<CartResponse>`
 
 Updates a cart (`cartId`) element (`variantId`) with a `newQuantity`.
 
-### `add(cartId: string, productId: string, quantity: number, variantId: string): CartResponse`
+### `add(cartId: string, productId: string, quantity: number, variantId: string): Promise<CartResponse>`
 
 Adds a `variantId` of the given `productId` to the `cartId` with the specified `quantity`.
 
-### `getTotalItems(cartId: string): CartTotalItemsResponse`
+### `setShopperId(cartId: string, shopperId: string): Promise<void>`
+
+Sets `shopperId` on cart with ID of `cartId`.
+
+### `getTotalItems(cartId: string): Promise<CartTotalItemsResponse>`
 
 Gets the total count of items in a cart with an ID of `cartId`.
 
-### `addDiscount(cartId: string, discountCode: string): CartResponse`
+### `addDiscount(cartId: string, discountCode: string): Promise<CartResponse>`
 
 Adds a discount with the specified `discountCode` to the `cartId`.
 
-### `removeDiscount(cartId: string, discountCode: string)`
+### `removeDiscount(cartId: string, discountCode: string): Promise<CartResponse>`
 
 Removes a discount with the specified `discountCode` from the `cartId`.
 
