@@ -257,7 +257,7 @@ const block = class extends React.Component {
 
 That's really it. Just a simple React Component with a render function and some state.
 
-Our storefronts have no global state. The state that each block need is self-contained, and block
+Our storefronts have no global state. The state that each block needs is self-contained, and block
 communication happens though a simple PubSub mechanism exposed through the SDK. No need for state
 managers like Redux or Mobx.
 
@@ -284,8 +284,8 @@ export default (global, block) => {
 };      
 ```
 
-Look how we decide to use global configuration for `fontFamily`, `fontSize` and `color` but
-block configuration for `backgroundColor`. Remember that `block` here is basically the 
+Here, we decided to use the global configuration for `fontFamily`, `fontSize` and `color` but
+the block configuration for `backgroundColor`. Remember that `block` here is basically the 
 block configuration. If the user does not customize the block, `blockConfig` is equal to `defaultConfig`.
 
 The return value of this function is an object with some properties that you can use to
@@ -315,12 +315,12 @@ export { getDataProps };
 
 The `getDataProps` function is a really powerful part of the block definition. This function is run
 before the block is created, and this lets us fetch additional data from any resource we
-need. It can be Volusion's API, or your own API. Note also how we receive the full props again.
+need. It can be Volusion's API or your own API. Note also how we receive the full props again.
 This lets you conditionally fetch data depending on the block configuration.
 
 This function returns a promise. As you see, we are returning an empty object. The structure
 we return from this function will be automatically available for your blocks to use in the
-render function. The following pseudo code will help you to understand a bit what we mean:
+render function. The following pseudocode illustrates this idea:
 
 ```js
 getDataProps(utils, props).then(data => {
@@ -336,7 +336,7 @@ function.
 
 The `utils` parameter gives you access to the SDK and other goodies documented [here][getdataprops-utils].
 
-In the next section, we will see how we can use this function to create amazing things.
+In the next section, we will see how this flexible design allows us to create amazing things.
 
 
 ## Running the block
@@ -373,9 +373,9 @@ use and develop a block.
 
 ## Before we go: A note about AMP and Tachyons
 
-Google is pushing hard on a technology called [AMP][amp]. In a nutshell, AMP is trying to deliver the fastest
-web experiences to countries with slow connections using sophisticated cache networks and some hard restrictions
-on how you build your webpages. Incredibly enough, the blocks you build are AMP friendly by default, and you
+Google is pushing a relatively new technology called [AMP][amp]. In a nutshell, AMP tries to deliver the fastest
+web experiences to countries with slow connections using sophisticated caching networks and restrictions
+on how you build your webpages. Incredibly enough, the blocks you build with Element are AMP friendly by default, and you
 can deliver experiences that will benefit from the AMP technology without much effort. There is a [dedicated 
 section][section-amp] on the considerations you need to have in order to keep your blocks AMP friendly.
 
