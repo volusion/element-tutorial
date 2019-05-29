@@ -6,8 +6,9 @@ focus on the fun parts. In order to use the block starter project and other feat
 we need to install the `element` cli. We will explain how to obtain the
 CLI in the next section.
 
-
 ## The CLI
+
+We recommend reading the [full cli tutorial][full-cli] to get familiar with how the `element` cli works.
 
 To obtain the CLI, run the following commands in your terminal:
 
@@ -23,7 +24,7 @@ element --version
 ```
 
 You should see the version of the cli displayed in your terminal. You can also pass
-the `--help` option to see the available options. For now, we are just interested in 
+the `--help` option to see the available options. For now, we are just interested in
 the following commands:
 
 ```
@@ -36,7 +37,6 @@ the following commands:
 Let's start by authenticating your system using your Volusion credentials. Remember to
 use the same credentials you use to access [Volusion Store Admin][admin]. To authenticate,
 just run `element login`. The system will ask for your username and password.
-
 
 ## Creating the block starter
 
@@ -52,7 +52,6 @@ element new MyFirstBlock
 
 Now, you will see a folder called `MyFirstBlock`. In the following section, we will study the
 structure of the Block starter project.
-
 
 ## The block starter structure
 
@@ -100,12 +99,12 @@ Let's review the files one by one, to give a bit more context:
 
 ### src/index.js
 
-You don't need to modify this file, but understanding it will give a better idea of what 
+You don't need to modify this file, but understanding it will give a better idea of what
 you are building. Let's take a look:
 
 ```js
-import { factory, defaultConfig } from './Block';
-import { getDataProps } from './Block/data';
+import { factory, defaultConfig } from "./Block";
+import { getDataProps } from "./Block/data";
 
 export { factory, getDataProps, defaultConfig };
 ```
@@ -113,8 +112,8 @@ export { factory, getDataProps, defaultConfig };
 As you can see, we are just importing the `src/Block/index.js` and the `src/Block/data/index.js`
 to export from them the important parts. So a block is basically a `factory` function that
 will build your block both in the server and in the browser (Yes, blocks are Server side rendered,
-too), a `defaultConfig` object, specifying the default configuration of your block and a 
-`getDataProps` function that will be executed before we create the Block to provide it with the 
+too), a `defaultConfig` object, specifying the default configuration of your block and a
+`getDataProps` function that will be executed before we create the Block to provide it with the
 required data to render itself.
 
 ### src/Block/index.js
@@ -147,9 +146,9 @@ Right now we are using React, but we can inject any framework in the future.
 **ElementPropTypes: A handy object to specify block configuration**
 
 An object similar to React's Proptypes that let you easily specify what
-configurations your block receives. After you determine the properties you want to 
-allow your users to customize, Site Designer will automatically build a form for your 
-users to be able to configure your block. 
+configurations your block receives. After you determine the properties you want to
+allow your users to customize, Site Designer will automatically build a form for your
+users to be able to configure your block.
 
 **Components: Components that we can use inside our blocks, like Buttons & Inputs**
 
@@ -160,12 +159,12 @@ all blocks. The user can configure globally how all buttons look.
 **utils: Utilities for retrieving data and connecting blocks together**
 
 The `utils` object provides access to the Volusion API, to a transport function to make
-HTTP requests in a universal way (server and browser), a PubSub mechanism for intrablock 
-communication and many others. Follow [Utils documentation][utils] for more info.       
+HTTP requests in a universal way (server and browser), a PubSub mechanism for intrablock
+communication and many others. Follow [Utils documentation][utils] for more info.
 
 **StyleSheet: The main Aphrodite CSS framework object**
 
-In general, you will only use `StyleSheet.create` to generate CSS that works both on 
+In general, you will only use `StyleSheet.create` to generate CSS that works both on
 the server and in the browser. More info [here][aphro].
 
 **css: Aphrodite utility function**
@@ -180,12 +179,11 @@ Examples: Font families, heading size, background color, font color.
 
 If a user does not configure your block, then this will be your `defaultConfig`.
 
-
 **Block configuration schema**
 
 Another important part of the block file, is the block configuration schema. This is an
 object that you define to let the users of your block configure aspects of its
-appearance and behavior. 
+appearance and behavior.
 
 Let's see how this object looks in our block starter:
 
@@ -198,19 +196,19 @@ const configSpec = {
 };
 ```
 
-If you are familiar with React, you can immediately notice the similarity with React's 
+If you are familiar with React, you can immediately notice the similarity with React's
 PropTypes package. The syntax is similar but we extended the available props. For example,
 the `color` prop is introduced by our package to indicate that we want to let the user
 pick a color for that particular configuration object.
 
 When a user selects your block from the Site Designer (SD), we will let them configure it according to the
 configuration schema you specified for your block. In the block starter example, the SD will
-show a form with a section (`ElementPropTypes.shape`) called `Color` with a color 
-picker (`ElementPropTypes.color`). As it is a shape, you can specify more configuration options 
+show a form with a section (`ElementPropTypes.shape`) called `Color` with a color
+picker (`ElementPropTypes.color`). As it is a shape, you can specify more configuration options
 wrapped in the `color` category or shape.
 
 Additionally, the user will see a text input with the name `Text` where they can type in the
-value they want for that particular configuration. 
+value they want for that particular configuration.
 
 To see all the available props we have, please visit [ElementPropTypes repo][element-proptypes].
 
@@ -218,15 +216,15 @@ To see all the available props we have, please visit [ElementPropTypes repo][ele
 
 The idea of the `configSpec` is to let users configure their blocks. As a natural consequence,
 you get to specify default values for those configurations to have a working (or close to working) block.
-To express this default configuration, let's take a look at the following object, which is  present in 
+To express this default configuration, let's take a look at the following object, which is present in
 the main block file:
 
 ```js
 const defaultConfig = {
-    color: {
-        background: 'transparent'
-    },
-    text: 'Default prop'
+  color: {
+    background: "transparent"
+  },
+  text: "Default prop"
 };
 ```
 
@@ -244,7 +242,7 @@ const block = class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-           ... 
+           ...
         };
     }
 
@@ -261,7 +259,6 @@ Our storefronts have no global state. The state that each block needs is self-co
 communication happens though a simple PubSub mechanism exposed through the SDK. No need for state
 managers like Redux or Mobx.
 
-
 ### src/Block/styles.js
 
 In this file, we specify the styles of our block. In order to do that, we export a function
@@ -273,19 +270,19 @@ to the user configuration, or when to use global styles. Let's see:
 
 ```js
 export default (global, block) => {
-    return {
-        div: {
-            fontFamily: global.typography.fontFamily,
-            fontSize: global.typography.baseFontSize,
-            color: global.color.primary,
-            backgroundColor: block.color.background
-        } 
-    };  
-};      
+  return {
+    div: {
+      fontFamily: global.typography.fontFamily,
+      fontSize: global.typography.baseFontSize,
+      color: global.color.primary,
+      backgroundColor: block.color.background
+    }
+  };
+};
 ```
 
 Here, we decided to use the global configuration for `fontFamily`, `fontSize` and `color` but
-the block configuration for `backgroundColor`. Remember that `block` here is basically the 
+the block configuration for `backgroundColor`. Remember that `block` here is basically the
 block configuration. If the user does not customize the block, `blockConfig` is equal to `defaultConfig`.
 
 The return value of this function is an object with some properties that you can use to
@@ -298,18 +295,17 @@ const classes = styles(globalConfig, blockConfig);
 ```
 
 This will generate the right class name for your DOM element, so you don't need to deal with
-picking the right class name or dealing with CSS class naming conventions. 
-
+picking the right class name or dealing with CSS class naming conventions.
 
 ### src/Block/data/index.js
 
 The default content of this file is really simple:
 
 ```js
-const getDataProps = (utils, props) => { 
-    return Promise.resolve({}); 
-};  
-        
+const getDataProps = (utils, props) => {
+  return Promise.resolve({});
+};
+
 export { getDataProps };
 ```
 
@@ -338,10 +334,9 @@ The `utils` parameter gives you access to the SDK and other goodies documented [
 
 In the next section, we will see how this flexible design allows us to create amazing things.
 
-
 ## Running the block
 
-It is time to finally run the block locally. You can see it in action on your computer. Follow the next 
+It is time to finally run the block locally. You can see it in action on your computer. Follow the next
 steps. Make sure to be in the `MyFirstBlock` folder.
 
 ```bash
@@ -349,18 +344,18 @@ npm install
 npm run start
 ```
 
-You will see a browser window with the shiny block on it. Feel free to click on the button to see it 
+You will see a browser window with the shiny block on it. Feel free to click on the button to see it
 in action.
 
 Next, let's open the file `local/index.html` and find this section:
 
 ```js
-props: { 
-    queryParams: {}, 
-    color: { 
-        background: 'yellow' 
-    }, 
-    text: "Hello from prs" 
+props: {
+    queryParams: {},
+    color: {
+        background: 'yellow'
+    },
+    text: "Hello from prs"
 }
 ```
 
@@ -370,13 +365,12 @@ object we just modified is just the `configSchema` with some values to test your
 Take the time to read the index.html file. You will see all the concepts of this section used to locally
 use and develop a block.
 
-
 ## Before we go: A note about AMP and Tachyons
 
 Google is pushing a relatively new technology called [AMP][amp]. In a nutshell, AMP tries to deliver the fastest
 web experiences to countries with slow connections using sophisticated caching networks and restrictions
 on how you build your webpages. Incredibly enough, the blocks you build with Element are AMP friendly by default, and you
-can deliver experiences that will benefit from the AMP technology without much effort. There is a [dedicated 
+can deliver experiences that will benefit from the AMP technology without much effort. There is a [dedicated
 section][section-amp] on the considerations you need to have in order to keep your blocks AMP friendly.
 
 One of the restrictions of AMP is that you can't reference any external CSS resource (in a `link` tag) and the total
@@ -391,11 +385,9 @@ as much as possible inside your block development. The way that Tachyons is buil
 keeping the CSS as dry as possible, considering the fact that a page can be built from many different blocks of
 different authors.
 
-
 ## Next section
 
 In the [next section][section2], we will start modifying our starter block to do some more interesting things.
-
 
 [admin]: https://www.volusion.com/login
 [utils]: ../utils-block
@@ -407,3 +399,4 @@ In the [next section][section2], we will start modifying our starter block to do
 [tachyons]: https://tachyons.io/
 [section2]: ../section2
 [starter]: https://github.com/volusion/element-BlockStarter
+[full-cli]: ../cli
