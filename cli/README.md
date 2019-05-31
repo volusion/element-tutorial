@@ -8,9 +8,9 @@ The element CLI is a command line utility that will support tasks related to `Bl
 - Updating blocks.
 - Releasing and rolling back block versions.
 
-This document will help you getting started and will provide best practices for block development along the way.
+This document will help you get started and will provide best practices for block development along the way.
 
-This document includes [a short version for a quick reference](#using-the-cli-for-the-impatient).
+This document includes [a shorter version for a quick reference](#using-the-cli-for-the-impatient).
 
 ## Getting the CLI
 
@@ -26,13 +26,13 @@ If the installation is successful, you should be able to run the following comma
 element -v
 ```
 
-> Pro Tip: Remember to check the available commands with `element --help`
+> Pro Tip: Check the available commands with `element --help`
 
 ## Using the CLI
 
 ### Authenticate
 
-The first step is to authenticate yourself using your Volusion credentials. As the credentials, you should use the same username and password that you use to connect to your Volusion store.
+The first step is to authenticate yourself using your Volusion credentials. As the credentials, you should use the same username and password that you use to log into your Volusion store.
 
 Running the following command, will ask your username and password:
 
@@ -56,7 +56,7 @@ Let's create our new block:
 element new MyFirstBlock
 ```
 
-> Pro Tip: Use camel case or dash separated words as your block folder name
+**Use camel case words only as your block folder name**
 
 The command will create a folder in the current directory called `MyFirstBlock` with the contents of the [Block starter project][starter] cloned into it. For more info about the contents of that folder, follow the [main tutorial][main], section `The block starter structure`
 
@@ -259,7 +259,7 @@ You can then make changes, and start fresh, from the `v1 released` commit state.
 
 Maybe you are adding new features to your block, the block configuration is not compatible with the previous, and/or the look and feel of the block changed. Those are all good reasons to create a major release.
 
-In order to do that, we recommend to create a new branch, where you will keep the `version 2` of the code:
+In order to do that, we recommend creating a new branch, where you will keep the `version 2` of the code:
 
 ```bash
 git checkout -b version2
@@ -366,7 +366,7 @@ npm run build
 element update
 element release -n "v1.2 released"
 
-# As always, remember to save the relaese as a commit
+# As always, remember to save the release as a commit
 git add .
 git commit -m "v1.2 released"
 ```
